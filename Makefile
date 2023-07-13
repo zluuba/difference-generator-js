@@ -4,3 +4,6 @@ install:
 
 reinstall:
 	sudo npm link
+
+lint:
+	npx eslint .
