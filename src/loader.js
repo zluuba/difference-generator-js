@@ -4,19 +4,20 @@ import fs from 'fs';
 const getFileExtension = (filename) => filename.split('.').pop();
 const readFile = (file) => fs.readFileSync(file, 'utf-8');
 
-const upload = (sourseFile) => {
-  const fileExtension = getFileExtension(sourseFile);
+const upload = (file) => {
+  const fileExtension = getFileExtension(file);
 
-  if (fileExtension === 'json') {
-    return JSON.parse(readFile(sourseFile));
+  switch(fileExtension) {
+    case 'json':
+      return JSON.parse(readFile(file));
+    case 'yaml':
+    case 'yml':
+      return yaml.load(readFile(file));
+    default:
+      throw new Error(
+        'Unknown file extension. The app only supports json and yaml formats.'
+      );
   }
-  if (fileExtension === 'yaml' || fileExtension === 'yml') {
-    return yaml.load(readFile(sourseFile));
-  }
-
-  throw new Error(
-    'Unknown file extension. The app only supports json and yaml formats.'
-  );
 };
 
 export default upload;
