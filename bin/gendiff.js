@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import genDiff from '../src/core.js';
 import { Command } from 'commander';
+import genDiff from '../src/core.js';
 
 const program = new Command();
 
@@ -11,11 +11,9 @@ program
   .argument('file2', 'second file for comparison')
   .option('-f, --format <type>', 'output format')
   .action((file1, file2, options) => {
-    const format = options.format;
-    const formatter = format ? format : 'stylish';
-
+    const formatter = options.format ? options.format : 'stylish';
     const diff = genDiff(file1, file2, formatter);
     console.log(diff);
-  })
+  });
 
 program.parse();

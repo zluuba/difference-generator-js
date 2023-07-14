@@ -7,7 +7,7 @@ const readFile = (file) => fs.readFileSync(file, 'utf-8');
 const upload = (file) => {
   const fileExtension = getFileExtension(file);
 
-  switch(fileExtension) {
+  switch (fileExtension) {
     case 'json':
       return JSON.parse(readFile(file));
     case 'yaml':
@@ -15,7 +15,7 @@ const upload = (file) => {
       return yaml.load(readFile(file));
     default:
       throw new Error(
-        'Unknown file extension. The app only supports json and yaml formats.'
+        `Unknown file extension: ${file}. The app only supports json and yaml formats.`,
       );
   }
 };

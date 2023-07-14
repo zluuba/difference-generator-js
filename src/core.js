@@ -1,8 +1,7 @@
+import path from 'path';
+import upload from './loader.js';
 import getDiffTree from './diffBuilder.js';
 import getFormatDiff from './formatter.js';
-import upload from './loader.js';
-import path from 'path';
-import _ from 'lodash';
 
 const currentDir = process.cwd();
 

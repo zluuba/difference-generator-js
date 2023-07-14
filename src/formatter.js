@@ -3,7 +3,7 @@ import getPlainFormatDiff from './formatters/plain.js';
 import getJsonFormatDiff from './formatters/json.js';
 
 const getFormatDiff = (diff, formatter) => {
-  switch(formatter) {
+  switch (formatter) {
     case 'stylish':
       return getStylishFormatDiff(diff);
     case 'plain':
@@ -12,7 +12,7 @@ const getFormatDiff = (diff, formatter) => {
       return getJsonFormatDiff(diff);
     default:
       throw new Error(
-        'Unknown formatter. Please, choose stylish, plain or json formatter.'
+        `Unknown formatter: ${formatter}. Please, choose stylish, plain or json formatter.`,
       );
   }
 };

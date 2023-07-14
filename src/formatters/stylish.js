@@ -20,15 +20,14 @@ const getStylishFormatDiff = (diff, replacer = ' ', spacesCount = 1) => {
 
     Object
       .entries(node)
-      .map(([key, val]) => {
+      .forEach(([key, val]) => {
         if (val.flag === 'update') {
           lines.push(`${currentIndent}${flags.delete}${key}: ${iter(val.value[0], depth + 1)}`);
           lines.push(`${currentIndent}${flags.add}${key}: ${iter(val.value[1], depth + 1)}`);
-          return;
+        } else {
+          lines.push(`${currentIndent}${flags[val.flag]}${key}: ${iter(val.value, depth + 1)}`);
         }
-        lines.push(`${currentIndent}${flags[val.flag]}${key}: ${iter(val.value, depth + 1)}`);
-        return;
-      })
+      });
 
     return [
       '{',
