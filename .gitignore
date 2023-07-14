@@ -1,9 +1,5 @@
 # local files
 /node_modules/
 
-# MacOS files
+# system files
 .DS_Store
-
-# temp files
-file1.json
-file2.json
