@@ -7,3 +7,9 @@ reinstall:
 
 lint:
 	npx eslint .
+
+test:
+	npx jest
+
+test-full:
+	npx jest --watchAll
