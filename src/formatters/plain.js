@@ -1,5 +1,5 @@
 const getPlainFormatDiff = (diff) => {
-  false;
+  return diff;
 };
 
 export default getPlainFormatDiff;

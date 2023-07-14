@@ -1,5 +1,5 @@
 const getJsonFormatDiff = (diff) => {
-  false;
+  return diff;
 };
 
 export default getJsonFormatDiff;
