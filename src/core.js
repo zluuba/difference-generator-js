@@ -11,8 +11,8 @@ const genDiff = (file1, file2, formatter = 'stylish') => {
   const data1 = upload(getFullPath(file1));
   const data2 = upload(getFullPath(file2));
 
-  const diff = getDiffTree(data1, data2);
-  return getFormatDiff(diff, formatter);
+  const diffTree = getDiffTree(data1, data2);
+  return getFormatDiff(diffTree, formatter);
 };
 
 export default genDiff;
