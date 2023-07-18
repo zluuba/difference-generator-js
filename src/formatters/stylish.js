@@ -27,8 +27,8 @@ const getStylishFormatDiff = (diff, replacer = ' ', spacesCount = 1) => {
       lines = node
         .map((obj) => {
           if (obj.flag === 'update') {
-            return (`${currentIndent}${flags.delete}${obj.key}: ${iter(obj.value[0], depth + 4)}\n`
-                    + `${currentIndent}${flags.add}${obj.key}: ${iter(obj.value[1], depth + 4)}`);
+            return (`${currentIndent}${flags.delete}${obj.key}: ${iter(obj.value.old, depth + 4)}\n`
+                    + `${currentIndent}${flags.add}${obj.key}: ${iter(obj.value.new, depth + 4)}`);
           }
           return `${currentIndent}${flags[obj.flag]}${obj.key}: ${iter(obj.value, depth + 4)}`;
         });
