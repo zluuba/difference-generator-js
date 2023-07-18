@@ -20,16 +20,15 @@ const getStylishFormatDiff = (diff, replacer = ' ', spacesCount = 1) => {
     let lines;
 
     if (!Array.isArray(node)) {
-      lines = Object.entries(node)
-        .map(([key, value]) => {
-          return `${currentIndent}${flags.nested}${key}: ${iter(value, depth + 4)}`
-        });
+      lines = Object
+        .entries(node)
+        .map(([key, value]) => `${currentIndent}${flags.nested}${key}: ${iter(value, depth + 4)}`);
     } else {
       lines = node
         .map((obj) => {
           if (obj.flag === 'update') {
-            return (`${currentIndent}${flags.delete}${obj.key}: ${iter(obj.value[0], depth + 4)}\n` +
-                    `${currentIndent}${flags.add}${obj.key}: ${iter(obj.value[1], depth + 4)}`);
+            return (`${currentIndent}${flags.delete}${obj.key}: ${iter(obj.value[0], depth + 4)}\n`
+                    + `${currentIndent}${flags.add}${obj.key}: ${iter(obj.value[1], depth + 4)}`);
           }
           return `${currentIndent}${flags[obj.flag]}${obj.key}: ${iter(obj.value, depth + 4)}`;
         });
