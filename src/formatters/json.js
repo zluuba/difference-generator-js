@@ -1,5 +1,1 @@
-const getJsonFormatDiff = (diff) => {
-  return diff;
-};
-
-export default getJsonFormatDiff;
+export default (diff) => JSON.stringify(diff, null, 2);

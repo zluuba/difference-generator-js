@@ -5,10 +5,10 @@ const stringify = (value) => {
     return '[complex value]';
   }
   if (typeof value === 'string') {
-    return `'${value}'`
+    return `'${value}'`;
   }
   return value;
-}
+};
 
 const getEvent = (node, path) => {
   switch (node.flag) {
@@ -17,15 +17,13 @@ const getEvent = (node, path) => {
     case 'delete':
       return `Property '${path}' was removed`;
     case 'update':
-      const oldValue = stringify(node.value.old);
-      const newValue = stringify(node.value.new);
-      return `Property '${path}' was updated. From ${oldValue} to ${newValue}`;
+      return `Property '${path}' was updated. From ${stringify(node.value.old)} to ${stringify(node.value.new)}`;
     default:
       return null;
   }
-}
+};
 
-const getPlainFormatDiff = (diff, path = '') => {
+const getPlainFormatDiff = (diff) => {
   const inner = (node, path) => node
     .map((obj) => {
       const newPath = path ? `${path}.${obj.key}` : obj.key;
@@ -37,7 +35,7 @@ const getPlainFormatDiff = (diff, path = '') => {
     })
     .filter((line) => line)
     .join('\n');
-    
+
   return inner(diff, '');
 };
 
