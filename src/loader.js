@@ -1,17 +1,18 @@
+import path from 'path';
 import yaml from 'js-yaml';
 import fs from 'fs';
 
-const getFileExtension = (filename) => filename.split('.').pop();
+const getFileExtension = (filename) => path.extname(filename);
 const readFile = (file) => fs.readFileSync(file, 'utf-8');
 
 const upload = (file) => {
   const fileExtension = getFileExtension(file);
 
   switch (fileExtension) {
-    case 'json':
+    case '.json':
       return JSON.parse(readFile(file));
-    case 'yaml':
-    case 'yml':
+    case '.yaml':
+    case '.yml':
       return yaml.load(readFile(file));
     default:
       throw new Error(
