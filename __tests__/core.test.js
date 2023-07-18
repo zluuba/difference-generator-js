@@ -40,8 +40,8 @@ test('gendiff json', () => {
 });
 
 test('unknow format exception', () => {
-  const msg = 'Unknown file extension: txt. The app only supports json and yaml formats.';
-  expect(() => genDiff('file1.txt', 'file2.epub')).toThrow(msg);
+  const msg = 'Unknown file extension: .txt. The app only supports json and yaml formats.';
+  expect(() => genDiff('file1.txt', 'file2.txt')).toThrow(msg);
 });
 
 test('unknow formatter exception', () => {
