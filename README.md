@@ -1,4 +1,4 @@
-# Difference generator: JavaScript Edition
+# Difference generator (js)
 
 [![Actions Status](https://github.com/zluuba/fullstack-javascript-project-46/workflows/hexlet-check/badge.svg)](https://github.com/zluuba/fullstack-javascript-project-46/actions)
 [![gengiff CI](https://github.com/zluuba/fullstack-javascript-project-46/actions/workflows/gengiff-ci.yml/badge.svg)](https://github.com/zluuba/fullstack-javascript-project-46/actions/workflows/gengiff-ci.yml)
@@ -7,14 +7,14 @@
 
 
 Same programm as [Difference generator](https://github.com/zluuba/difference-generator), but rewritten in JavaScript. </br>
-All of this, of course, is created for learning. </br>
+It's all for learning, of course. </br>
 For full details, please visit the source project page. </br>
 
 
 ## Requirements
 - [Node.js | NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-## Installation 
+## Installation
 
 Clone this repo or download it with pip:
 ```ch
