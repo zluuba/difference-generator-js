@@ -11,8 +11,7 @@ program
   .argument('file2', 'second file for comparison')
   .option('-f, --format <type>', 'output format', 'stylish')
   .action((file1, file2, options) => {
-    const diff = genDiff(file1, file2, options.format);
-    console.log(diff);
+    console.log(genDiff(file1, file2, options.format));
   });
 
 program.parse();

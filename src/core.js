@@ -7,7 +7,7 @@ const currentDir = process.cwd();
 
 const getFullPath = (filename) => path.resolve(currentDir, filename);
 
-const genDiff = (file1, file2, formatter) => {
+const genDiff = (file1, file2, formatter = 'stylish') => {
   const data1 = upload(getFullPath(file1));
   const data2 = upload(getFullPath(file2));
 
