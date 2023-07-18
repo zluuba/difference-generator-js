@@ -13,3 +13,9 @@ test:
 
 test-full:
 	npx jest --watchAll
+
+diff:
+	gendiff __fixtures__/nested1.json __fixtures__/nested2.json
+
+diff-raw:
+	gendiff __fixtures__/nested1.json __fixtures__/nested2.json -f json
