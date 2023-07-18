@@ -1,41 +1,50 @@
 import fs from 'fs';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/core.js';
 
-let json1;
-let json2;
-let yaml1;
-let yaml2;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-let expectedStylish;
-let expectedPlain;
+const getFullPath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 
-beforeAll(() => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
+const json1 = getFullPath('file1.json');
+const json2 = getFullPath('file2.json');
+const yaml1 = getFullPath('file1.yaml');
+const yaml2 = getFullPath('file2.yml');
 
-  json1 = `${__dirname}/../__fixtures__/file1.json`, 'utf-8';
-  json2 = `${__dirname}/../__fixtures__/file2.json`, 'utf-8';
-  yaml1 = `${__dirname}/../__fixtures__/file1.yaml`, 'utf-8';
-  yaml2 = `${__dirname}/../__fixtures__/file2.yaml`, 'utf-8';
-
-  expectedStylish = fs.readFileSync(`${__dirname}/../__fixtures__/expectedStylish.txt`, 'utf-8');
-  expectedPlain = fs.readFileSync(`${__dirname}/../__fixtures__/expectedPlain.txt`, 'utf-8');
-});
-
-test("gendiff stylish", () => {
+test('gendiff stylish', () => {
   const receivedJson = genDiff(json1, json2, 'stylish');
   const receivedYaml = genDiff(yaml1, yaml2, 'stylish');
   const receivedMix = genDiff(json1, yaml2, 'stylish');
+
+  const expectedStylish = fs.readFileSync(getFullPath('expectedStylish.txt'), 'utf-8');
 
   expect(expectedStylish).toEqual(receivedJson);
   expect(expectedStylish).toEqual(receivedYaml);
   expect(expectedStylish).toEqual(receivedMix);
 });
 
-test("gendiff plain", () => {
+test('gendiff plain', () => {
   const receivedPlain = genDiff(json1, json2, 'plain');
+  const expectedPlain = fs.readFileSync(getFullPath('expectedPlain.txt'), 'utf-8');
 
   expect(expectedPlain).toEqual(receivedPlain);
 });
+
+test('gendiff json', () => {
+  const receivedJson = genDiff(json1, json2, 'json');
+  const expectedJson = fs.readFileSync(getFullPath('expectedJson.txt'), 'utf-8');
+
+  expect(expectedJson).toEqual(receivedJson);
+});
+
+test('unknow format exception', () => {
+  const msg = 'Unknown file extension: txt. The app only supports json and yaml formats.';
+  expect(() => genDiff('file1.txt', 'file2.epub')).toThrow(msg);
+})
+
+test('unknow formatter exception', () => {
+  const msg = 'Unknown formatter: such. Please, choose stylish, plain or json formatter.'
+  expect(() => genDiff(json1, json2, 'such')).toThrow(msg);
+})
