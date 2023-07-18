@@ -15,7 +15,7 @@ const upload = (file) => {
       return yaml.load(readFile(file));
     default:
       throw new Error(
-        `Unknown file extension: ${file}. The app only supports json and yaml formats.`,
+        `Unknown file extension: ${fileExtension}. The app only supports json and yaml formats.`,
       );
   }
 };
