@@ -50,6 +50,6 @@ This command shows the percentage of test coverage:
 make test-coverage
 ```
 
----
+## 
 
 **by [zluuba](https://github.com/zluuba)**
