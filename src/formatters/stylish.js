@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 const flags = {
-  default: '   ',
+  nested: '   ',
+  unchanged: '   ',
   add: ' + ',
   delete: ' - ',
 };
@@ -16,24 +17,25 @@ const getStylishFormatDiff = (diff, replacer = ' ', spacesCount = 1) => {
     const currentIndent = replacer.repeat(indentSize);
     const bracketIndent = replacer.repeat(indentSize - spacesCount);
 
-    const lines = [];
+    let lines;
 
-    Object
-      .entries(node)
-      .forEach(([key, val]) => {
-        if (val.flag === 'update') {
-          lines.push(`${currentIndent}${flags.delete}${key}: ${iter(val.value[0], depth + 1)}`);
-          lines.push(`${currentIndent}${flags.add}${key}: ${iter(val.value[1], depth + 1)}`);
-        } else {
-          lines.push(`${currentIndent}${flags[val.flag]}${key}: ${iter(val.value, depth + 1)}`);
-        }
-      });
+    if (!Array.isArray(node)) {
+      lines = Object.entries(node)
+        .map(([key, value]) => {
+          return `${currentIndent}${flags.nested}${key}: ${iter(value, depth + 4)}`
+        });
+    } else {
+      lines = node
+        .map((obj) => {
+          if (obj.flag === 'update') {
+            return (`${currentIndent}${flags.delete}${obj.key}: ${iter(obj.value[0], depth + 4)}\n` +
+                    `${currentIndent}${flags.add}${obj.key}: ${iter(obj.value[1], depth + 4)}`);
+          }
+          return `${currentIndent}${flags[obj.flag]}${obj.key}: ${iter(obj.value, depth + 4)}`;
+        });
+    }
 
-    return [
-      '{',
-      ...lines,
-      `${bracketIndent}}`,
-    ].join('\n');
+    return ['{', ...lines, `${bracketIndent}}`].join('\n');
   };
 
   return iter(diff, 1);
