@@ -1,0 +1,124 @@
+[
+  {
+    "key": "common",
+    "flag": "nested",
+    "value": [
+      {
+        "key": "follow",
+        "flag": "add",
+        "value": false
+      },
+      {
+        "key": "setting1",
+        "flag": "unchanged",
+        "value": "Value 1"
+      },
+      {
+        "key": "setting2",
+        "flag": "delete",
+        "value": 200
+      },
+      {
+        "key": "setting3",
+        "flag": "update",
+        "value": {
+          "old": true,
+          "new": null
+        }
+      },
+      {
+        "key": "setting4",
+        "flag": "add",
+        "value": "blah blah"
+      },
+      {
+        "key": "setting5",
+        "flag": "add",
+        "value": {
+          "key5": "value5"
+        }
+      },
+      {
+        "key": "setting6",
+        "flag": "nested",
+        "value": [
+          {
+            "key": "doge",
+            "flag": "nested",
+            "value": [
+              {
+                "key": "wow",
+                "flag": "update",
+                "value": {
+                  "old": "",
+                  "new": "so much"
+                }
+              }
+            ]
+          },
+          {
+            "key": "key",
+            "flag": "unchanged",
+            "value": "value"
+          },
+          {
+            "key": "ops",
+            "flag": "add",
+            "value": "vops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "key": "group1",
+    "flag": "nested",
+    "value": [
+      {
+        "key": "baz",
+        "flag": "update",
+        "value": {
+          "old": "bas",
+          "new": "bars"
+        }
+      },
+      {
+        "key": "foo",
+        "flag": "unchanged",
+        "value": "bar"
+      },
+      {
+        "key": "nest",
+        "flag": "update",
+        "value": {
+          "old": {
+            "key": "value"
+          },
+          "new": "str"
+        }
+      }
+    ]
+  },
+  {
+    "key": "group2",
+    "flag": "delete",
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    }
+  },
+  {
+    "key": "group3",
+    "flag": "add",
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
+  }
+]
