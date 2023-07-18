@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "Difference generator",
+  "description": "Difference generator: compare configuration files",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
