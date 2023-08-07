@@ -6,19 +6,20 @@ import genDiff from '../src/core.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const getFullPath = (filename) => join(__dirname, '..', '__fixtures__', filename);
+const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-const json1 = getFullPath('file1.json');
-const json2 = getFullPath('file2.json');
-const yaml1 = getFullPath('file1.yaml');
-const yaml2 = getFullPath('file2.yml');
+const json1 = getFixturePath('file1.json');
+const json2 = getFixturePath('file2.json');
+const yaml1 = getFixturePath('file1.yaml');
+const yaml2 = getFixturePath('file2.yml');
 
 test('gendiff stylish', () => {
   const receivedJson = genDiff(json1, json2, 'stylish');
   const receivedYaml = genDiff(yaml1, yaml2, 'stylish');
   const receivedMix = genDiff(json1, yaml2, 'stylish');
 
-  const expectedStylish = fs.readFileSync(getFullPath('expectedStylish.txt'), 'utf-8');
+  const expectedStylish = readFile('expectedStylish.txt');
 
   expect(expectedStylish).toEqual(receivedJson);
   expect(expectedStylish).toEqual(receivedYaml);
@@ -27,14 +28,14 @@ test('gendiff stylish', () => {
 
 test('gendiff plain', () => {
   const receivedPlain = genDiff(json1, json2, 'plain');
-  const expectedPlain = fs.readFileSync(getFullPath('expectedPlain.txt'), 'utf-8');
+  const expectedPlain = readFile('expectedPlain.txt');
 
   expect(expectedPlain).toEqual(receivedPlain);
 });
 
 test('gendiff json', () => {
   const receivedJson = genDiff(json1, json2, 'json');
-  const expectedJson = fs.readFileSync(getFullPath('expectedJson.txt'), 'utf-8');
+  const expectedJson = readFile('expectedJson.txt');
 
   expect(expectedJson).toEqual(receivedJson);
 });
