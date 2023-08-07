@@ -1,6 +1,6 @@
+import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import fs from 'fs';
 
 const getFileExtension = (filename) => path.extname(filename);
 const readFile = (file) => fs.readFileSync(file, 'utf-8');
